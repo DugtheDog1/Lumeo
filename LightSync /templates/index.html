@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather and Lights Control</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mb-4">Weather & Lights Dashboard</h1>
+
+    <div class="row mb-4">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <h2 class="card-title">Weather Info</h2>
+                <p><strong>Current Time:</strong> {{ current_time }}</p>
+                <p><strong>Timezone:</strong> {{ timezone }}</p>
+
+                <!-- Weather Icon & Precipitation -->
+                <p><strong>Precipitation:</strong>
+                    {% if precipitation %}
+                        <i class="fas fa-cloud-showers-heavy text-primary"></i> Yes ({{ precip_mm }} mm)
+                    {% else %}
+                        <i class="fas fa-sun text-warning"></i> No
+                    {% endif %}
+                </p>
+
+                <!-- Weather Icon & Temperature -->
+                <p><strong>Temperature:</strong> {{ temperature_celsius }}°C / {{ temperature_fahrenheit }}°F 
+                    <i class="fas fa-thermometer-half text-danger"></i>
+                </p>
+
+                <!-- Weather Icon for Sunrise/Sunset -->
+                <p><strong>Sunrise:</strong> {{ sunrise }} <i class="fas fa-sun text-warning"></i></p>
+                <p><strong>Sunset:</strong> {{ sunset }} <i class="fas fa-sun text-warning"></i></p>
+
+                <form method="POST">
+                    <button type="submit" class="btn btn-primary w-100">🔄 Refresh Data</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <h2 class="card-title">Light Controls</h2>
+                <form method="POST">
+                    <div class="d-flex justify-content-between mb-3">
+                        <button type="submit" name="action" value="turn_off" class="btn btn-danger w-45">
+                            <i class="fas fa-power-off"></i> Shut Off
+                        </button>
+                        <button type="submit" name="action" value="turn_on" class="btn btn-success w-45">
+                            <i class="fas fa-lightbulb"></i> Turn On
+                        </button>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <label for="color">Color:</label>
+                        <input type="color" id="color" name="color" value="#ffffff">
+                        <button type="submit" name="action" value="set_color" class="btn btn-info">
+                            <i class="fas fa-palette"></i> Set Color
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
