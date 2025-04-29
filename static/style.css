@@ -1,0 +1,62 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+/* Current Time Styling */
+header .current-time {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #444;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+}
+
+.main-content h1 {
+    color: #333;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
