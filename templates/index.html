@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Is it daytime?</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <h1>Rainroot Weather</h1>
-    <p>Is day {{ isDay }}</p>  
-    <p>Current time {{ currentTime }}</p>  
-    <p>Current Percipitation Status {{ currentPrecipitationStatus }}</p>  
-    <p>Current overall status {{ currentOverallStatus }}</p>  
-
+    <div class="container">
+        <header>
+            <h1>Rainroot Weather</h1>
+        </header>
+        
+        <main>
+            <section class="weather-info">
+                <p><strong>Is it daytime?</strong> <span class="value">{{ isDay }}</span></p>
+                <p><strong>Current time:</strong> <span class="value">{{ currentTime }}</span></p>
+                <p><strong>Current Precipitation Status:</strong> <span class="value">{{ currentPrecipitationStatus }}</span></p>
+                <p><strong>Current Overall Status:</strong> <span class="value">{{ currentOverallStatus }}</span></p>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

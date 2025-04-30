@@ -1,62 +1,80 @@
-/* General Body Styles */
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Header Styles */
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    position: relative;
-}
-
-/* Current Time Styling */
-header .current-time {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 18px;
-}
-
-/* Navigation Styles */
-nav {
-    background-color: #444;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-nav a:hover {
-    background-color: #555;
-}
-
-/* Main Content Styles */
-.main-content {
-    padding: 20px;
-}
-
-.main-content h1 {
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
     color: #333;
+    line-height: 1.6;
 }
 
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
+/* Container for Content */
+.container {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+/* Weather Information Section */
+.weather-info {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.weather-info p {
+    margin-bottom: 15px;
+}
+
+.weather-info .value {
+    font-weight: bold;
+    color: #16a085;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .weather-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .weather-info p {
+        font-size: 0.9rem;
+    }
+
+    .weather-info .value {
+        font-size: 1rem;
+    }
 }
