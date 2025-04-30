@@ -38,7 +38,7 @@ def get_current_info():
 
     # Get current time and date
     timezone = pytz.timezone('America/Chicago')  # Set timezone to Chicago
-    current_time = datetime.now(timezone).strftime("%H:%M:%S")  # Time format
+    current_time = datetime.now(timezone).strftime("%I:%M:%S %p")
     current_date = datetime.now(timezone).strftime("%Y-%m-%d")  # Date format
 
     # Return data to the HTML template
