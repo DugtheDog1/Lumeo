@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Is it daytime?</title>
     <link rel="stylesheet" href="static/style.css">
+    <style>
+        .container {
+            margin-bottom: 20px;
+        }
+        .minimizable {
+            position: relative;
+        }
+        .minimizable .header {
+            cursor: pointer;
+            background-color: #f0f0f0;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 10px;
+            display: block;
+        }
+        .content.minimized {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,12 +44,34 @@
             <p><strong>Last Updated:</strong> <span class="value">{{ lastUpdated }}</span></p>
             <p><strong>Current Precipitation Status:</strong> <span class="value">{{ currentPrecipitation }}</span></p>
             <p><strong>Current Temp:</strong> <span class="value">{{ currentTemp }}</span></p>
-
             <p><strong>Sunset:</strong> <span class="value">{{ sunsetTime }}</span></p>
             <p><strong>Sunrise:</strong> <span class="value">{{ sunriseTime }}</span></p>
-
-
         </section>
     </div>
+
+    <!-- Christmas Lights Section -->
+    <div class="container minimizable">
+        <div class="header" onclick="toggleVisibility('christmasLightsContent')">Christmas Lights</div>
+        <div class="content" id="christmasLightsContent">
+            <p><strong>Christmas Lights Status:</strong> <span class="value">On</span></p>
+            <p><strong>Brightness:</strong> <span class="value">50%</span></p>
+        </div>
+    </div>
+
+    <!-- Sprinklers Section -->
+    <div class="container minimizable">
+        <div class="header" onclick="toggleVisibility('sprinklersContent')">Sprinklers</div>
+        <div class="content" id="sprinklersContent">
+            <p><strong>Sprinkler Status:</strong> <span class="value">Off</span></p>
+            <p><strong>Watering Duration:</strong> <span class="value">10 minutes</span></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleVisibility(contentId) {
+            const content = document.getElementById(contentId);
+            content.classList.toggle('minimized');
+        }
+    </script>
 </body>
 </html>
