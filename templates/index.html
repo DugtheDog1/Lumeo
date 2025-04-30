@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Is it daytime?</title>
     <link rel="stylesheet" href="static/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
 </head>
 <body>
     <header>
@@ -13,17 +14,35 @@
 
     <div class="container">
         <section class="current-info">
-            <p><strong>Current Time:</strong> <span class="value">{{ currentTime }}</span></p>
-            <p><strong>Current Date:</strong> <span class="value">{{ currentDate }}</span></p>
+            <p><strong>Current Time:</strong> <span class="value" id="currentTime">{{ currentTime }}</span></p>
+            <p><strong>Current Date:</strong> <span class="value" id="currentDate">{{ currentDate }}</span></p>
         </section>
     </div>
 
     <div class="container">
         <section class="weather-info">
-            <p><strong>Last Updated:</strong> <span class="value">{{ lastUpdated }}</span></p>
-            <p><strong>Current Precipitation Status:</strong> <span class="value">{{ currentPrecipitation }}</span></p>
-            <p><strong>Current Temp:</strong> <span class="value">{{ currentTemp }}</span></p>
+            <p><strong>Last Updated:</strong> <span class="value" id="lastUpdated"></span></p>
+            <p><strong>Current Precipitation Status:</strong> <span class="value" id="currentPrecipitation"></span></p>
+            <p><strong>Current Temp:</strong> <span class="value" id="currentTemp"></span></p>
         </section>
     </div>
+
+    <script>
+        function updateWeatherData() {
+            $.get("/get_data", function(data) {
+                // Update the weather info dynamically
+                $("#lastUpdated").text(data.lastUpdated);
+                $("#currentPrecipitation").text(data.currentPrecipitation);
+                $("#currentTemp").text(data.currentTemp + "°F");
+            });
+        }
+
+        // Call the update function every 60 seconds (60000 ms)
+        setInterval(updateWeatherData, 60000);
+        
+        // Call it immediately to avoid waiting for the first interval
+        updateWeatherData();
+    </script>
+
 </body>
 </html>
