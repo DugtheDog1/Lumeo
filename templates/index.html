@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
+    <header>
+        <h1 id="title">Rain Root</h1>
+    </header>
+
     <div class="container">
-        <header>
-            <h1>Rainroot Weather</h1>
-        </header>
-        
-        <main>
-            <section class="weather-info">
-                <p><strong>Is it daytime?</strong> <span class="value">{{ isDay }}</span></p>
-                <p><strong>Current time:</strong> <span class="value">{{ currentTime }}</span></p>
-                <p><strong>Current Precipitation Status:</strong> <span class="value">{{ currentPrecipitationStatus }}</span></p>
-                <p><strong>Current Overall Status:</strong> <span class="value">{{ currentOverallStatus }}</span></p>
-            </section>
-        </main>
+        <section class="current-info">
+            <p><strong>Current Time:</strong> <span class="value">{{ currentTime }}</span></p>
+            <p><strong>Current Date:</strong> <span class="value">{{ currentDate }}</span></p>
+        </section>
+    </div>
+
+    <div class="container">
+        <section class="weather-info">
+            <p><strong>Last Updated:</strong> <span class="value">{{ lastUpdated }}</span></p>
+            <p><strong>Current Precipitation Status:</strong> <span class="value">{{ currentPrecipitation }}</span></p>
+            <p><strong>Current Temp:</strong> <span class="value">{{ currentTemp }}</span></p>
+        </section>
     </div>
 </body>
 </html>

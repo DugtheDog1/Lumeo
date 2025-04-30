@@ -1,80 +1,79 @@
-/* General Reset */
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
     color: #333;
     line-height: 1.6;
-}
-
-/* Container for Content */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header Styling */
+/* Header */
 header {
     text-align: center;
     margin-bottom: 30px;
 }
 
-h1 {
+#title {
     font-size: 2.5rem;
     color: #2c3e50;
 }
 
-/* Weather Information Section */
-.weather-info {
+/* Container */
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Content */
+section p {
     font-size: 1.2rem;
-    line-height: 1.8;
+    margin-bottom: 12px;
 }
 
-.weather-info p {
-    margin-bottom: 15px;
+strong {
+    color: #1a73e8;
 }
 
-.weather-info .value {
-    font-weight: bold;
+.value {
     color: #16a085;
+    font-weight: bold;
 }
 
-/* Responsive Styles */
+/* Responsive Design */
 @media (max-width: 768px) {
-    h1 {
+    #title {
         font-size: 2rem;
     }
 
-    .weather-info p {
+    section p {
         font-size: 1rem;
+    }
+
+    .container {
+        padding: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 15px;
-    }
-
-    h1 {
+    #title {
         font-size: 1.8rem;
     }
 
-    .weather-info p {
-        font-size: 0.9rem;
+    section p {
+        font-size: 0.95rem;
     }
 
-    .weather-info .value {
+    .value {
         font-size: 1rem;
     }
 }

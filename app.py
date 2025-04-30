@@ -1,4 +1,3 @@
-
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -11,45 +10,33 @@ app = Flask(__name__)
 
 @app.route('/')
 def get_current_info():
-    url = "https://api.open-meteo.com/v1/forecast?latitude=44.8&longitude=-93.17&current=temperature_2m,is_day,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
+    # API request URL
+    url = "https://api.open-meteo.com/v1/forecast?latitude=44.8041&longitude=-93.1669&daily=sunset,sunrise&models=gfs_seamless&current=is_day,precipitation,temperature_2m&timezone=America%2FChicago&forecast_days=1&wind_speed_unit=mph&precipitation_unit=inch&temperature_unit=fahrenheit"
     
     response = requests.get(url, verify=False)  # Open link, verify=False to ignore SSL warnings
     data = response.json()  # Convert to JSON
 
-    # Extract relevant data
-    current_is_day = data["current"].get("is_day", None)
-    current_time_utc = data["current"].get("time", None)
-    current_precipitation_status = data["current"].get("precipitation", None)
-    current_overall_status = data["current"].get("weather_code", None)
+    # Extract relevant data from the API response
+    last_updated = data["current"].get("time", None)
+    current_precipitation = data["current"].get("precipitation", None)
+    current_temp = data["current"].get("temperature_2m", None)
 
-    # Convert the UTC time to local time (Central Time)
-    if current_time_utc:
-        # Convert the string to a datetime object
-        utc_time = datetime.fromisoformat(current_time_utc)
-        # Get the UTC timezone and local timezone (replace with your actual local timezone, e.g., 'America/Chicago' for Minnesota)
-        utc_zone = pytz.UTC
-        local_zone = pytz.timezone('America/Chicago')
-        # Make the datetime object timezone-aware (in UTC)
-        utc_time = utc_zone.localize(utc_time)
-        # Convert to local time
-        local_time = utc_time.astimezone(local_zone)
-        # Format the local time
-        current_time = local_time.strftime('%Y-%m-%d %H:%M:%S')
-    else:
-        current_time = None
-
+    # Get current time and date
+    timezone = pytz.timezone('America/Chicago')  # Set timezone to Chicago
+    current_time = datetime.now(timezone).strftime("%H:%M:%S")  # Time format
+    current_date = datetime.now(timezone).strftime("%Y-%m-%d")  # Date format
 
     # Return data to the HTML template
     return render_template("index.html", 
-                           isDay=current_is_day, 
-                           currentTime=current_time, 
-                           currentPrecipitationStatus=current_precipitation_status, 
-                           currentOverallStatus=current_overall_status)
-
-
+                           lastUpdated=last_updated, 
+                           currentPrecipitation=current_precipitation, 
+                           currentTemp=current_temp,
+                           currentTime=current_time,
+                           currentDate=current_date)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 # if __name__ == '__main__':
