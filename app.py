@@ -8,7 +8,10 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 def format_timestamp(timestamp):
-    return datetime.fromisoformat(timestamp).strftime('%B %d, %Y %I:%M %p')
+    try:
+        return datetime.fromisoformat(timestamp).strftime('%B %d, %Y %I:%M %p')
+    except (ValueError, TypeError):
+        return "N/A"
 
 @app.route('/')
 def get_current_info():
@@ -27,14 +30,9 @@ def get_current_info():
     sunrise_time = data["daily"].get("sunrise", [None])[0]
 
     # Format the timestamps for readability
-    if last_updated:
-        last_updated = format_timestamp(last_updated)
-
-    if sunset_time:
-        sunset_time = format_timestamp(sunset_time)
-
-    if sunrise_time:
-        sunrise_time = format_timestamp(sunrise_time)
+    last_updated = format_timestamp(last_updated)
+    sunset_time = format_timestamp(sunset_time)
+    sunrise_time = format_timestamp(sunrise_time)
 
     # Get current time and date
     timezone = pytz.timezone('America/Chicago')  # Set timezone to Chicago
